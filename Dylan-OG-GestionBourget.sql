@@ -10,8 +10,12 @@ CREATE TABLE IF NOT EXISTS emplacement (
   `id` int NOT NULL AUTO_INCREMENT,
   `hall` varchar(2) NOT NULL,
   `parcelle` varchar(3) NOT NULL,
-  CONSTRAINT pk_emplacement PRIMARY KEY emplacement(id)
+  CONSTRAINT pk_emplacement PRIMARY KEY (id),
+  CONSTRAINT uc_hall_parcelle UNIQUE (hall, parcelle),
+  CONSTRAINT chk_hall_format CHECK (hall REGEXP '^[A-Z][1-9]$'),
+  CONSTRAINT chk_parcelle_format CHECK (parcelle REGEXP '^[0-9]{3}$')
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 -- --------------------------------------------------------
 
